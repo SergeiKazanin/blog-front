@@ -1,9 +1,17 @@
 import React from "react";
+import { useGetAllPostsQuery } from "./store/postApi";
 
 function App() {
+  const { data: posts, isFetching, isError } = useGetAllPostsQuery("");
+  console.log(posts, isError);
   return (
-    <div className="App">
-      <p className="text-gray-500">rferge</p>
+    <div>
+      {isFetching && <p>Loading</p>}
+      <ul>
+        {posts?.map((post) => (
+          <li key={post._id}>{post.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
