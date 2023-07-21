@@ -30,3 +30,10 @@ export interface User {
   id: string;
   isActivated: boolean;
 }
+
+export interface CreatePost {
+  title: string;
+  text: string;
+  tags: string[];
+  imageUrl: string;
+}

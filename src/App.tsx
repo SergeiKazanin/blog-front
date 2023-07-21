@@ -2,7 +2,11 @@ import React from "react";
 import { useGetAllPostsQuery } from "./store/postApi";
 
 function App() {
-  const { data: posts, isFetching, isError } = useGetAllPostsQuery("");
+  const {
+    data: posts,
+    isFetching,
+    isError,
+  } = useGetAllPostsQuery("", { pollingInterval: 3000 });
   console.log(posts, isError);
   return (
     <div>

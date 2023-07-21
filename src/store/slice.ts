@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserLogin } from "../models/models";
+import { UserLogin } from "../models/postModels";
 
 const slice = createSlice({
   name: "posts",
