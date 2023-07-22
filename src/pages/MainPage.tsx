@@ -1,12 +1,8 @@
 import React from "react";
-import { useGetAllPostsQuery } from "./store/postApi";
+import { useGetAllPostsQuery } from "../store/postApi";
 
-function App() {
-  const {
-    data: posts,
-    isFetching,
-    isError,
-  } = useGetAllPostsQuery("", { pollingInterval: 3000 });
+export default function MainPage() {
+  const { data: posts, isFetching, isError } = useGetAllPostsQuery("");
   console.log(posts, isError);
   return (
     <div>
@@ -19,5 +15,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

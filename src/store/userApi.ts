@@ -31,8 +31,8 @@ export const userApi = createApi({
     activate: builder.query<string, string>({
       query: (link) => `/auth/activate/${link}`,
     }),
-    refresh: builder.query<UserToken, string>({
-      query: (link) => `/auth/refresh`,
+    refresh: builder.query<undefined, undefined>({
+      query: () => `/auth/refresh`,
     }),
   }),
 });
