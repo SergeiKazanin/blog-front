@@ -8,6 +8,7 @@ export interface User {
   email: string;
   id: string;
   isActivated: boolean;
+  fullName: string;
 }
 
 export interface UserRegister {

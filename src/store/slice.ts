@@ -1,19 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { UserLogin } from "../models/postModels";
+import { UserToken } from "../models/userModels";
 
 const slice = createSlice({
   name: "posts",
-  initialState: { user: {} as UserLogin },
+  initialState: { user: {} as UserToken, isAuth: false },
   reducers: {
-    userAdd(state, action: PayloadAction<UserLogin>) {
+    userAdd(state, action: PayloadAction<UserToken>) {
       state.user = action.payload;
     },
-    userDel(state) {
-      state.user = {
-        accessToken: "",
-        refreshToken: "",
-        user: { email: "", id: "", isActivated: false },
-      };
+    userDel(state) {},
+    setIsAuth(state, action: PayloadAction<boolean>) {
+      state.isAuth = action.payload;
     },
   },
 });

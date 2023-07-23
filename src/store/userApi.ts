@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { UserToken, UserLogin, UserRegister } from "../models/userModels";
-import { User } from "../models/postModels";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -25,13 +24,13 @@ export const userApi = createApi({
     logout: builder.mutation<UserToken, UserLogin>({
       query: () => ({ url: `/auth/logout`, method: "POST" }),
     }),
-    getUsers: builder.query<User, string>({
-      query: () => `users`,
-    }),
+    // getUsers: builder.query<string, string>({
+    //   query: () => `users`,
+    // }),
     activate: builder.query<string, string>({
       query: (link) => `/auth/activate/${link}`,
     }),
-    refresh: builder.query<undefined, undefined>({
+    refresh: builder.query<string, string>({
       query: () => `/auth/refresh`,
     }),
   }),
@@ -39,7 +38,7 @@ export const userApi = createApi({
 
 export const {
   useLazyActivateQuery,
-  useLazyGetUsersQuery,
+  //useLazyGetUsersQuery,
   useLazyRefreshQuery,
   useLoginMutation,
   useLogoutMutation,

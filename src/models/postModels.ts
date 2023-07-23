@@ -18,19 +18,6 @@ export interface UserPost {
   fullName: string;
   email: string;
 }
-
-export interface UserLogin {
-  accessToken: string;
-  refreshToken: string;
-  user: User;
-}
-
-export interface User {
-  email: string;
-  id: string;
-  isActivated: boolean;
-}
-
 export interface CreatePost {
   title: string;
   text: string;

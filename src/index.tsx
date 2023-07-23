@@ -10,6 +10,7 @@ import Posts from "./pages/Posts";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CreatePost from "./pages/CreatePost";
+import AboutUser from "./pages/AboutUser";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         element: <Posts />,
       },
       {
-        path: "/register",
+        path: "/registration",
         element: <Register />,
       },
       {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/createpost",
         element: <CreatePost />,
+      },
+      {
+        path: "/abotuser",
+        element: <AboutUser />,
       },
     ],
   },
