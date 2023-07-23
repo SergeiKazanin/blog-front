@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        monserat: ["Montserrat"],
+        montserrat: ["Montserrat"],
         baebneue: ["Bebas Neue"],
       },
 

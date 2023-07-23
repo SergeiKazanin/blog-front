@@ -1,17 +1,18 @@
 import React from "react";
-import { useGetAllPostsQuery } from "../store/postApi";
+import { Outlet } from "react-router";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function MainPage() {
-  const { data: posts, isFetching, isError } = useGetAllPostsQuery("");
-  console.log(posts, isError);
   return (
-    <div>
-      {isFetching && <p>Loading</p>}
-      <ul>
-        {posts?.map((post) => (
-          <li key={post._id}>{post.title}</li>
-        ))}
-      </ul>
+    <div className="w-full min-h-screen bg-gray-100 text-black font-montserrat text-xl">
+      <div className="flex w-full items-center flex-col min-h-screen">
+        <Header />
+        <div className="flex flex-1 bg-neutral-700 max-w-screen-lg">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }
