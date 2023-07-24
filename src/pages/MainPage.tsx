@@ -19,6 +19,9 @@ export default function MainPage() {
             userAdd(userToken);
             localStorage.setItem("accessToken", userToken.accessToken);
           }
+        })
+        .catch((e) => {
+          console.log(e);
         });
     }
   }, []);

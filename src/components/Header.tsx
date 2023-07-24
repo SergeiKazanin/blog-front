@@ -35,7 +35,7 @@ export default function Header() {
         )}
         {isAuth && (
           <div className="w-auto flex gap-6">
-            <Link to={"abotuser"} className="flex items-center justify-center">
+            <Link to={"aboutuser"} className="flex items-center justify-center">
               {user.user.fullName}
             </Link>
             <Link

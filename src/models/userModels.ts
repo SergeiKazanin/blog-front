@@ -9,6 +9,8 @@ export interface User {
   id: string;
   isActivated: boolean;
   fullName: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface UserRegister {

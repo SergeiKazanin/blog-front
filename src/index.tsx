@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         element: <CreatePost />,
       },
       {
-        path: "/abotuser",
+        path: "/aboutuser",
         element: <AboutUser />,
       },
     ],
