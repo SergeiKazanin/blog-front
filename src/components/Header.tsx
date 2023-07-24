@@ -3,16 +3,19 @@ import { useAppSelector } from "../hooks/redux";
 import { Link } from "react-router-dom";
 import { useLogoutMutation } from "../store/userApi";
 import { useActions } from "../hooks/actions";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { isAuth, user } = useAppSelector((store) => store.posts);
   const [logout] = useLogoutMutation();
   const { setIsAuth, userDel } = useActions();
+  const navigate = useNavigate();
+
   return (
     <header className="h-12 flex w-full justify-center shadow-md items-center bg-white">
       <nav className="max-w-screen-lg w-full flex justify-between">
         <Link
-          to={"/"}
+          to={"/posts"}
           className="bg-slate-300 w-20 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-md font-baebneue"
         >
           BLOG
@@ -50,6 +53,7 @@ export default function Header() {
                 localStorage.removeItem("accessToken");
                 setIsAuth(false);
                 userDel();
+                navigate("/posts");
               }}
               className="bg-yellow-200 w-[140px] h-10 rounded-md flex items-center justify-center hover:bg-yellow-400 text-2xl shadow-md"
             >

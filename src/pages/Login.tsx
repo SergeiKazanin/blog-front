@@ -3,18 +3,21 @@ import { useActions } from "../hooks/actions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLoginMutation } from "../store/userApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { setIsAuth, userAdd } = useActions();
   const [loginUser, { data: userToken, isError }] = useLoginMutation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userToken) {
       setIsAuth(true);
       userAdd(userToken);
       localStorage.setItem("accessToken", userToken.accessToken);
+      navigate("/posts");
     }
-  }, [setIsAuth, userAdd, userToken]);
+  }, [navigate, setIsAuth, userAdd, userToken]);
 
   return (
     <div
@@ -22,7 +25,7 @@ export default function Login() {
       className="flex mt-20 flex-col gap-3 items-center rounded-xl h-[500px] w-[500px]"
     >
       <div className="text-2xl">Login</div>
-      {isError ? <p>Error try again</p> : <br></br>}
+      {isError ? <p>Error try again</p> : <br />}
       <Formik
         initialValues={{
           password: "",

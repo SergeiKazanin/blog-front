@@ -4,17 +4,18 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLazyRefreshQuery } from "../store/userApi";
 import { useActions } from "../hooks/actions";
+import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
   const [refresh] = useLazyRefreshQuery();
   const { setIsAuth, userAdd } = useActions();
+  const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       refresh("")
         .unwrap()
         .then((userToken) => {
           if (userToken) {
-            console.log(userToken);
             setIsAuth(true);
             userAdd(userToken);
             localStorage.setItem("accessToken", userToken.accessToken);
@@ -24,6 +25,7 @@ export default function MainPage() {
           console.log(e);
         });
     }
+    navigate("posts");
   }, []);
 
   return (

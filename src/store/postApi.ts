@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Posts, Post, CreatePost } from "../models/postModels";
+import { Posts, Post, CreatePost, UrlImg } from "../models/postModels";
 import type {
   BaseQueryFn,
   FetchArgs,
@@ -60,6 +60,9 @@ export const postsApi = createApi({
         body: post,
       }),
     }),
+    uploadFile: builder.mutation<UrlImg, FormData>({
+      query: (data) => ({ url: `uploads`, method: "POST", body: data }),
+    }),
   }),
 });
 
@@ -69,4 +72,5 @@ export const {
   useCreatePostMutation,
   useDeletePostMutation,
   useUpdatePostMutation,
+  useUploadFileMutation,
 } = postsApi;

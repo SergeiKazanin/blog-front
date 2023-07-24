@@ -17,9 +17,7 @@ export default function AboutUser() {
           <p>{user.user.fullName}</p>
           <p>{user.user.email}</p>
           <p>
-            {moment(user.user.createdAt).format(
-              "dddd, MMMM Do YYYY, h:mm:ss a"
-            )}
+            {moment(user.user.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss")}
           </p>
           <p>
             {moment(user.user.updatedAt).format(

@@ -24,3 +24,7 @@ export interface CreatePost {
   tags: string[];
   imageUrl: string;
 }
+
+export interface UrlImg {
+  url: string;
+}
