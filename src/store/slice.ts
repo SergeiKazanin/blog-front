@@ -8,7 +8,9 @@ const slice = createSlice({
     userAdd(state, action: PayloadAction<UserToken>) {
       state.user = action.payload;
     },
-    userDel(state) {},
+    userDel(state) {
+      state.user = {} as UserToken;
+    },
     setIsAuth(state, action: PayloadAction<boolean>) {
       state.isAuth = action.payload;
     },

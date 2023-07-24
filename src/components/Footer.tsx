@@ -6,7 +6,7 @@ export default function Footer() {
       <span className="max-w-screen-lg">
         Developed by{" "}
         <a
-          className="text-amber-950 hover:text-stone-600"
+          className="text-amber-500 hover:text-amber-600"
           href="https://github.com/SergeiKazanin"
           target="_blank"
           rel="noreferrer"

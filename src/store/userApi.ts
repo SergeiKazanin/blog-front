@@ -5,6 +5,7 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_URL,
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     registration: builder.mutation<UserToken, UserRegister>({
@@ -21,7 +22,7 @@ export const userApi = createApi({
         body: userLogin,
       }),
     }),
-    logout: builder.mutation<UserToken, UserLogin>({
+    logout: builder.mutation<string, string>({
       query: () => ({ url: `/auth/logout`, method: "POST" }),
     }),
     // getUsers: builder.query<string, string>({
@@ -30,7 +31,7 @@ export const userApi = createApi({
     activate: builder.query<string, string>({
       query: (link) => `/auth/activate/${link}`,
     }),
-    refresh: builder.query<string, string>({
+    refresh: builder.query<UserToken, string>({
       query: () => `/auth/refresh`,
     }),
   }),
@@ -38,6 +39,7 @@ export const userApi = createApi({
 
 export const {
   useLazyActivateQuery,
+  useRegistrationMutation,
   //useLazyGetUsersQuery,
   useLazyRefreshQuery,
   useLoginMutation,

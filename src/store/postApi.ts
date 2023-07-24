@@ -5,7 +5,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
-
+import { actionsPosts } from "../store/slice";
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_API_URL,
   prepareHeaders: (headers) => {
@@ -27,9 +27,9 @@ const baseQueryWithReauth: BaseQueryFn<
     const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
     if (refreshResult.data) {
       // store the new token
-      //api.dispatch(tokenReceived(refreshResult.data));
+      //api.dispatch(actionsPosts.userAdd(refreshResult.data));
       // retry the initial query
-      // result = await baseQuery(args, api, extraOptions);
+      result = await baseQuery(args, api, extraOptions);
     } else {
       //api.dispatch(loggedOut());
     }

@@ -10,7 +10,9 @@ export const store = configureStore({
     posts: sliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware),
+    getDefaultMiddleware()
+      .concat(postsApi.middleware)
+      .concat(userApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

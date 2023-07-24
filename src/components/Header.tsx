@@ -1,15 +1,19 @@
 import React from "react";
 import { useAppSelector } from "../hooks/redux";
 import { Link } from "react-router-dom";
+import { useLogoutMutation } from "../store/userApi";
+import { useActions } from "../hooks/actions";
 
 export default function Header() {
   const { isAuth, user } = useAppSelector((store) => store.posts);
+  const [logout] = useLogoutMutation();
+  const { setIsAuth, userDel } = useActions();
   return (
-    <header className="h-12 flex w-full justify-center shadow-sm items-center bg-white">
+    <header className="h-12 flex w-full justify-center shadow-md items-center bg-white">
       <nav className="max-w-screen-lg w-full flex justify-between">
         <Link
           to={"/"}
-          className="bg-slate-300 w-20 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-sm font-baebneue"
+          className="bg-slate-300 w-20 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-md font-baebneue"
         >
           BLOG
         </Link>
@@ -17,13 +21,13 @@ export default function Header() {
           <div className="w-auto flex gap-6">
             <Link
               to={"login"}
-              className="bg-cyan-200 w-28 h-10 rounded-md flex items-center justify-center hover:bg-cyan-400 text-2xl shadow-sm"
+              className="bg-cyan-200 w-28 h-10 rounded-md flex items-center justify-center hover:bg-cyan-400 text-2xl shadow-md"
             >
               Login
             </Link>
             <Link
               to={"registration"}
-              className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-sm"
+              className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
             >
               Registration
             </Link>
@@ -31,19 +35,26 @@ export default function Header() {
         )}
         {isAuth && (
           <div className="w-auto flex gap-6">
-            <Link to={"abotuser"}>{user.user.fullName}</Link>
+            <Link to={"abotuser"} className="flex items-center justify-center">
+              {user.user.fullName}
+            </Link>
             <Link
               to={"createpost"}
-              className="bg-fuchsia-300 w-[180px] h-10 rounded-md flex items-center justify-center hover:bg-fuchsia-400 text-2xl shadow-sm"
+              className="bg-fuchsia-300 w-[180px] h-10 rounded-md flex items-center justify-center hover:bg-fuchsia-400 text-2xl shadow-md"
             >
               Create post
             </Link>
-            <Link
-              to={"/auth/logout"}
-              className="bg-yellow-200 w-[140px] h-10 rounded-md flex items-center justify-center hover:bg-yellow-400 text-2xl shadow-sm"
+            <button
+              onClick={() => {
+                logout("");
+                localStorage.removeItem("accessToken");
+                setIsAuth(false);
+                userDel();
+              }}
+              className="bg-yellow-200 w-[140px] h-10 rounded-md flex items-center justify-center hover:bg-yellow-400 text-2xl shadow-md"
             >
               Logout
-            </Link>
+            </button>
           </div>
         )}
       </nav>
