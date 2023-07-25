@@ -19,6 +19,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/posts/:numberPage",
+        element: <Posts />,
+      },
+      {
         path: "/posts",
         element: <Posts />,
       },
