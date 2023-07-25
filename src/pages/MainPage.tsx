@@ -30,9 +30,9 @@ export default function MainPage() {
 
   return (
     <div className="w-full min-h-screen bg-gray-100 text-black font-montserrat text-xl">
-      <div className="flex w-full items-center flex-col min-h-screen">
+      <div className="flex flex-col items-center w-full min-h-screen">
         <Header />
-        <div className="flex flex-1 max-w-screen-lg">
+        <div className="flex justify-center flex-1 w-full max-w-screen-lg">
           <Outlet />
         </div>
         <Footer />

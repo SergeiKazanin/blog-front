@@ -61,53 +61,78 @@ export default function CreatePost() {
       spellChecker: false,
       placeholder: "Введите текст...",
       status: false,
-      maxHeight: "400px",
+      maxHeight: "250px",
     } as EasyMDE.Options;
   }, []);
 
   return (
-    <div className="">
-      <button
-        onClick={() => {
-          if (inputRef.current) inputRef.current.click();
-        }}
-      >
-        Loading image
-      </button>
-      <input
-        ref={inputRef}
-        type="file"
-        onChange={(e) => handleChangeFile(e)}
-        hidden
-      />
-      {imageUrl && (
-        <>
-          <button onClick={onClickRemoveImage}>Delete</button>
-          <img
-            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
-            alt="Uploaded"
-          />
-        </>
-      )}
-      <br />
+    <div className="flex flex-col gap-3 w-full p-6">
+      <div className="flex flex-col gap-3 items-start">
+        <button
+          className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
+          onClick={() => {
+            if (inputRef.current) inputRef.current.click();
+          }}
+        >
+          Load image
+        </button>
+        <input
+          ref={inputRef}
+          type="file"
+          onChange={(e) => handleChangeFile(e)}
+          hidden
+          className=""
+        />
+        {imageUrl && (
+          <>
+            <div
+              style={{
+                backgroundImage: `url(${process.env.REACT_APP_API_URL}${imageUrl})`,
+              }}
+              className="w-full h-[400px] bg-center  bg-no-repeat bg-cover rounded-md"
+            ></div>
+            <button
+              className="bg-red-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md"
+              onClick={onClickRemoveImage}
+            >
+              Delete image
+            </button>
+          </>
+        )}
+      </div>
+
       <input
         type="text"
         value={textTitle}
         onChange={(e) => setTextTitle(e.target.value)}
         placeholder="Article title"
+        className="h-12 p-3 text-2xl relative outline-none rounded-md shadow-md"
       ></input>
       <input
         type="text"
         onChange={(e) => setTags(e.target.value)}
         value={tags}
         placeholder="Tags"
+        className="h-10 p-2 relative outline-none rounded-md shadow-md"
       ></input>
 
-      <SimpleMDE value={textArticle} onChange={onChange} options={options} />
-      <div>
-        <button onClick={() => handleSubmit()}>Опубликовать</button>
+      <SimpleMDE
+        className="rounded-md shadow-md"
+        value={textArticle}
+        onChange={onChange}
+        options={options}
+      />
+      <div className="flex gap-6">
+        <button
+          className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
+          onClick={() => handleSubmit()}
+        >
+          Publish
+        </button>
         <Link to={"/posts"}>
-          <button>Отмена</button>
+          <button className="bg-red-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md">
+            Cancel
+          </button>
         </Link>
       </div>
     </div>

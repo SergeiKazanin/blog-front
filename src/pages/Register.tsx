@@ -69,7 +69,7 @@ export default function Register() {
             <ErrorMessage name="password" />
 
             <button
-              className="rounded-md w-56 bg-cyan-200 hover:bg-cyan-400 p-2 shadow-md"
+              className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
               type="submit"
             >
               Registrate

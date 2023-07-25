@@ -31,7 +31,7 @@ export default function AboutUser() {
       )}
       {!user.user.isActivated && (
         <p className="text-red-600">
-          Mail not confirmed. To confirm, follow the link in the emai
+          Mail not confirmed. To confirm, follow the link in the email.
         </p>
       )}
     </div>

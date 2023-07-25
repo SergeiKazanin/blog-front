@@ -6,6 +6,8 @@ import type {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
 import { actionsPosts } from "../store/slice";
+import { UserToken } from "../models/userModels";
+
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_API_URL,
   prepareHeaders: (headers) => {
@@ -16,6 +18,7 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
 const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
@@ -24,14 +27,20 @@ const baseQueryWithReauth: BaseQueryFn<
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 401) {
     // try to get a new token
-    const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
-    if (refreshResult.data) {
-      // store the new token
-      //api.dispatch(actionsPosts.userAdd(refreshResult.data));
-      // retry the initial query
+    try {
+      const refreshResult = await baseQuery(
+        { url: "/auth/refresh", method: "GET", credentials: "include" },
+        api,
+        extraOptions
+      );
+      const data = refreshResult.data as UserToken;
+      localStorage.setItem("accessToken", data.accessToken);
       result = await baseQuery(args, api, extraOptions);
-    } else {
-      //api.dispatch(loggedOut());
+    } catch (error) {
+      api.dispatch(actionsPosts.setIsAuth(false));
+      api.dispatch(actionsPosts.userDel());
+      localStorage.removeItem("accessToken");
+      window.location.replace(`${process.env.REACT_APP_CLIENT_URL}/posts`);
     }
   }
   return result;
@@ -73,4 +82,5 @@ export const {
   useDeletePostMutation,
   useUpdatePostMutation,
   useUploadFileMutation,
+  useLazyGetAllPostsQuery,
 } = postsApi;

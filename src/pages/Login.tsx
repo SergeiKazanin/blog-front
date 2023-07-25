@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="flex mt-20 flex-col gap-3 items-center rounded-xl h-[500px] w-[500px]"
+      className="flex mt-20 flex-col items-center gap-3 items-center rounded-xl h-[500px] w-[500px]"
     >
       <div className="text-2xl">Login</div>
       {isError ? <p>Error try again</p> : <br />}
@@ -60,7 +60,7 @@ export default function Login() {
             <ErrorMessage name="password" />
 
             <button
-              className="rounded-md w-56 bg-cyan-200 hover:bg-cyan-400 p-2 shadow-md"
+              className="bg-cyan-200 hover:bg-cyan-400 w-[140px] h-10 rounded-md flex items-center justify-center text-2xl shadow-md"
               type="submit"
             >
               Login

@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="h-12 flex w-full justify-center shadow-md items-center bg-white">
-      <nav className="max-w-screen-lg w-full flex justify-between">
+      <nav className="max-w-screen-lg w-full p-6 flex justify-between">
         <Link
           to={"/posts"}
           className="bg-slate-300 w-20 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-md font-baebneue"
@@ -43,7 +43,7 @@ export default function Header() {
             </Link>
             <Link
               to={"createpost"}
-              className="bg-fuchsia-300 w-[180px] h-10 rounded-md flex items-center justify-center hover:bg-fuchsia-400 text-2xl shadow-md"
+              className="bg-amber-200 w-[180px] h-10 rounded-md flex items-center justify-center hover:bg-amber-400 text-2xl shadow-md"
             >
               Create post
             </Link>
