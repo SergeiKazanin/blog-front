@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllPostsQuery } from "../store/postApi";
 import { CircularProgress, Pagination } from "@mui/material";
-import PostRender from "../components/Post";
+import { PostRender } from "../components/Post";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Posts() {
-  const {
-    data: posts,
-    isFetching,
-    isError,
-  } = useGetAllPostsQuery("", { refetchOnMountOrArgChange: true });
+  const { data: posts, isFetching } = useGetAllPostsQuery("", {
+    refetchOnMountOrArgChange: true,
+  });
   const { numberPage } = useParams();
   let page: number = 1;
   if (numberPage) {
@@ -17,7 +15,7 @@ export default function Posts() {
   }
   const navigate = useNavigate();
   const [totalPage, setTotalPage] = useState(0);
-  const totalElementOnPage = 8;
+  const totalElementOnPage = 5;
 
   useEffect(() => {
     if (posts?.length) {
@@ -26,15 +24,14 @@ export default function Posts() {
         ? setTotalPage(Math.floor(x) + 1)
         : setTotalPage(Math.floor(x));
     }
-    return () => {};
   }, [posts]);
 
   return (
     <div className="p-6 w-full flex flex-col items-center">
-      <div className="flex-1">
+      <div className="flex-1 flex justify-center w-full">
         {isFetching && <CircularProgress />}
         {!isFetching && (
-          <ul>
+          <ul className="flex flex-col gap-3 w-full">
             {posts
               ?.slice(
                 page * totalElementOnPage - totalElementOnPage,

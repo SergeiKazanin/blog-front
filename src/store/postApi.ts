@@ -53,7 +53,7 @@ export const postsApi = createApi({
     getAllPosts: builder.query<Posts, string>({
       query: () => "posts",
     }),
-    getPost: builder.query<Post, string>({
+    getPost: builder.query<Post, string | undefined>({
       query: (id) => `posts/${id}`,
     }),
     createPost: builder.mutation<Post, CreatePost>({
@@ -82,5 +82,5 @@ export const {
   useDeletePostMutation,
   useUpdatePostMutation,
   useUploadFileMutation,
-  useLazyGetAllPostsQuery,
+  useGetPostQuery,
 } = postsApi;
