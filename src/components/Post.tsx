@@ -30,12 +30,12 @@ export const PostRender: FC<PostProps> = ({ post }) => {
 
   return (
     <Link to={`/post/${post._id}`}>
-      <div className="flex gap-4 w-full h-32 rounded-md shadow-md p-2 bg-white hover:border-2 hover:border-purple-500">
+      <div className="flex gap-4 w-full md:h-32 rounded-md shadow-md p-2 bg-white hover:border-2 hover:border-purple-500">
         <div
           style={{
             backgroundImage: `url(${process.env.REACT_APP_API_URL}${post.imageUrl})`,
           }}
-          className="w-20 h-28 bg-center  bg-no-repeat bg-contain rounded-md"
+          className="w-20 h-28 bg-center hidden sm:block bg-no-repeat bg-contain rounded-md"
         ></div>
         <div className="flex flex-col">
           <div>{post.user.fullName}</div>

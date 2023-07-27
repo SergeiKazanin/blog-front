@@ -12,8 +12,8 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <header className="h-12 flex w-full justify-center shadow-md items-center bg-white">
-      <nav className="max-w-screen-lg w-full p-6 flex justify-between">
+    <header className="sm:h-14 flex w-full justify-center shadow-md items-center bg-white">
+      <nav className="max-w-screen-lg w-full h-full gap-3 flex-col sm:flex-row  p-6 flex justify-between items-center">
         <Link
           to={"/posts"}
           className="bg-slate-300 w-20 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-md font-baebneue"
@@ -21,7 +21,7 @@ export default function Header() {
           BLOG
         </Link>
         {!isAuth && (
-          <div className="w-auto flex gap-6">
+          <div className="w-auto flex sm:flex-row flex-col gap-6">
             <Link
               to={"login"}
               className="bg-cyan-200 w-28 h-10 rounded-md flex items-center justify-center hover:bg-cyan-400 text-2xl shadow-md"
@@ -37,7 +37,7 @@ export default function Header() {
           </div>
         )}
         {isAuth && (
-          <div className="w-auto flex gap-6">
+          <div className="w-auto sm:flex-row flex-col flex gap-6">
             <Link to={"aboutuser"} className="flex items-center justify-center">
               {user.user.fullName}
             </Link>

@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="flex mt-20 flex-col items-center gap-3 items-center rounded-xl h-[500px] w-[500px]"
+      className="flex mt-20 flex-col items-center gap-3 rounded-xl"
     >
       <div className="text-2xl">Login</div>
       {isError ? <p>Error try again</p> : <br />}
@@ -45,14 +45,14 @@ export default function Login() {
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-3 items-center justify-center">
             <Field
-              className="h-9 p-1 w-[350px] placeholder-black relative outline-none rounded-md shadow-md"
+              className="h-9 p-1  placeholder-black relative outline-none rounded-md shadow-md"
               name="email"
               type="email"
               placeholder="Input email"
             />
             <ErrorMessage name="email" />
             <Field
-              className="h-9 p-1 w-[350px] placeholder-black relative outline-none rounded-md shadow-md"
+              className="h-9 p-1 placeholder-black relative outline-none rounded-md shadow-md"
               name="password"
               type="password"
               placeholder="Input password"

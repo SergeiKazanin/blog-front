@@ -47,21 +47,21 @@ export default function Register() {
         {({ errors, touched }) => (
           <Form className="flex flex-col gap-3 items-center justify-center">
             <Field
-              className="h-9 p-1 w-[350px] placeholder-black relative outline-none rounded-md shadow-md"
+              className="h-9 p-1 placeholder-black relative outline-none rounded-md shadow-md"
               name="fullName"
               type="text"
               placeholder="Input name"
             />
             <ErrorMessage name="email" />
             <Field
-              className="h-9 p-1 w-[350px] placeholder-black relative outline-none rounded-md shadow-md"
+              className="h-9 p-1 placeholder-black relative outline-none rounded-md shadow-md"
               name="email"
               type="email"
               placeholder="Input email"
             />
             <ErrorMessage name="email" />
             <Field
-              className="h-9 p-1 w-[350px] placeholder-black relative outline-none rounded-md shadow-md"
+              className="h-9 p-1 placeholder-black relative outline-none rounded-md shadow-md"
               name="password"
               type="password"
               placeholder="Input password"
