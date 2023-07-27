@@ -1,9 +1,20 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import EasyMDE from "easymde";
-import { useCreatePostMutation, useUploadFileMutation } from "../store/postApi";
-import { Link } from "react-router-dom";
+import {
+  useCreatePostMutation,
+  useLazyGetPostQuery,
+  useUpdatePostMutation,
+  useUploadFileMutation,
+} from "../store/postApi";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
@@ -11,10 +22,14 @@ export default function CreatePost() {
   const [imageUrl, setImageUrl] = useState("");
   const [textTitle, setTextTitle] = useState("");
   const [tags, setTags] = useState("");
+  const [edit, setEdit] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileLoad] = useUploadFileMutation();
   const [loadPost] = useCreatePostMutation();
+  const [getPost] = useLazyGetPostQuery();
+  const [updatePost] = useUpdatePostMutation();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -46,9 +61,12 @@ export default function CreatePost() {
         imageUrl,
         text: textArticle,
       };
-      const postload = await loadPost(post).unwrap();
-      const id = postload._id;
-      navigate(`/post/${id}`);
+
+      const postload = edit
+        ? await updatePost({ id, post }).unwrap()
+        : await loadPost(post).unwrap();
+      const idL = edit ? id : postload._id;
+      navigate(`/post/${idL}`);
     } catch (error) {
       console.log(error);
       alert("Ошибка при создании сатьи");
@@ -64,6 +82,24 @@ export default function CreatePost() {
       maxHeight: "250px",
     } as EasyMDE.Options;
   }, []);
+
+  useEffect(() => {
+    const Post = async (id: string) => {
+      try {
+        const post = await getPost(id).unwrap();
+        setTextTitle(post.title);
+        setImageUrl(post.imageUrl);
+        setTags(post.tags.join());
+        setTextArticle(post.text);
+        setEdit(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id) {
+      Post(id);
+    }
+  }, [getPost, id]);
 
   return (
     <div className="flex flex-col gap-3 w-full p-6">
@@ -127,7 +163,7 @@ export default function CreatePost() {
           className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
           onClick={() => handleSubmit()}
         >
-          Publish
+          {edit ? "Save" : "Publish"}
         </button>
         <Link to={"/posts"}>
           <button className="bg-red-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md">
