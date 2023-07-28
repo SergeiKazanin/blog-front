@@ -107,7 +107,7 @@ export default function CreatePost() {
     <div className="flex flex-col gap-3 w-full p-6">
       <div className="flex flex-col gap-3 items-start">
         <button
-          className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
+          className="bg-teal-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
           onClick={() => {
             if (inputRef.current) inputRef.current.click();
           }}
@@ -130,7 +130,7 @@ export default function CreatePost() {
               className="w-full h-[400px] bg-center  bg-no-repeat bg-cover rounded-md"
             ></div>
             <button
-              className="bg-red-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md"
+              className="bg-red-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md"
               onClick={onClickRemoveImage}
             >
               Delete image
@@ -162,13 +162,13 @@ export default function CreatePost() {
       />
       <div className="flex gap-6">
         <button
-          className="bg-teal-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
+          className="bg-teal-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-teal-400 text-2xl shadow-md"
           onClick={() => handleSubmit()}
         >
           {edit ? "Save" : "Publish"}
         </button>
         <Link to={"/posts"}>
-          <button className="bg-red-200 w-[200px] h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md">
+          <button className="bg-red-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md">
             Cancel
           </button>
         </Link>

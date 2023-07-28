@@ -30,7 +30,7 @@ export const PostRender: FC<PostProps> = ({ post }) => {
 
   return (
     <Link to={`/post/${post._id}`}>
-      <div className="flex gap-4 w-full md:h-32 rounded-md shadow-md p-2 bg-white hover:border hover:border-purple-500">
+      <div className="flex gap-4 w-full  rounded-md shadow-md p-2 bg-white hover:border hover:border-purple-500">
         <div
           style={{
             backgroundImage: `url(${process.env.REACT_APP_API_URL}${post.imageUrl})`,
