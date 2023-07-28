@@ -54,23 +54,25 @@ export default function CreatePost() {
   }, []);
 
   const handleSubmit = async () => {
-    try {
-      const post = {
-        title: textTitle,
-        tags: tags.split(","),
-        imageUrl,
-        text: textArticle,
-      };
+    alert("Создание постов отключено");
+    navigate(`/posts`);
+    // try {
+    //   const post = {
+    //     title: textTitle,
+    //     tags: tags.split(","),
+    //     imageUrl,
+    //     text: textArticle,
+    //   };
 
-      const postload = edit
-        ? await updatePost({ id, post }).unwrap()
-        : await loadPost(post).unwrap();
-      const idL = edit ? id : postload._id;
-      navigate(`/post/${idL}`);
-    } catch (error) {
-      console.log(error);
-      alert("Ошибка при создании сатьи");
-    }
+    //   const postload = edit
+    //     ? await updatePost({ id, post }).unwrap()
+    //     : await loadPost(post).unwrap();
+    //   const idL = edit ? id : postload._id;
+    //   navigate(`/post/${idL}`);
+    // } catch (error) {
+    //   console.log(error);
+    //   alert("Ошибка при создании сатьи");
+    // }
   };
 
   const options = useMemo(() => {
