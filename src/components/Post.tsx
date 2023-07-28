@@ -35,7 +35,7 @@ export const PostRender: FC<PostProps> = ({ post }) => {
           style={{
             backgroundImage: `url(${process.env.REACT_APP_API_URL}${post.imageUrl})`,
           }}
-          className="w-20 h-28 bg-center hidden sm:block bg-no-repeat bg-contain rounded-md"
+          className="w-20 h-28 bg-center flex-shrink-0 hidden sm:block bg-no-repeat bg-contain rounded-md"
         ></div>
         <div className="flex flex-col">
           <div>{post.user.fullName}</div>
