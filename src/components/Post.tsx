@@ -30,7 +30,7 @@ export const PostRender: FC<PostProps> = ({ post }) => {
 
   return (
     <Link to={`/post/${post._id}`}>
-      <div className="flex gap-4 w-full md:h-32 rounded-md shadow-md p-2 bg-white hover:border-2 hover:border-purple-500">
+      <div className="flex gap-4 w-full md:h-32 rounded-md shadow-md p-2 bg-white hover:border hover:border-purple-500">
         <div
           style={{
             backgroundImage: `url(${process.env.REACT_APP_API_URL}${post.imageUrl})`,
@@ -44,17 +44,22 @@ export const PostRender: FC<PostProps> = ({ post }) => {
           </div>
           <div>{post.title}</div>
           <div className="flex gap-2 items-center">
-            <RemoveRedEyeOutlinedIcon />
-            <div className="text-lg mr-4">{post.viewsCount}</div>
+            <IconButton>
+              <RemoveRedEyeOutlinedIcon />
+            </IconButton>
+            <div className="text-base mr-4">{post.viewsCount}</div>
             {user?.user?.id === post?.user?._id ? (
               <>
                 <Link to={`/post/${post._id}/edit`}>
-                  <IconButton>
-                    <EditOutlinedIcon className="hover:text-emerald-600" />
+                  <IconButton className="hover:text-emerald-600">
+                    <EditOutlinedIcon />
                   </IconButton>
                 </Link>
-                <IconButton onClick={(e) => handleDelete(e)}>
-                  <DeleteOutlinedIcon className="hover:text-red-600" />
+                <IconButton
+                  className="hover:text-red-600"
+                  onClick={(e) => handleDelete(e)}
+                >
+                  <DeleteOutlinedIcon />
                 </IconButton>{" "}
               </>
             ) : (

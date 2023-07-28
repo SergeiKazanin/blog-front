@@ -3,14 +3,14 @@ import { useParams } from "react-router";
 import { useGetPostQuery } from "../store/postApi";
 import { CircularProgress, dividerClasses } from "@mui/material";
 import moment from "moment";
+import Markdown from "marked-react";
 
 export default function SinglePost() {
   const { id } = useParams();
-  let page: number = 1;
-
   const { data: postLoad, isFetching } = useGetPostQuery(id, {
     refetchOnMountOrArgChange: true,
   });
+
   return (
     <div className="w-full h-min flex justify-center p-6">
       {isFetching && <CircularProgress />}
@@ -29,9 +29,9 @@ export default function SinglePost() {
                 "dddd, MMMM Do YYYY, h:mm:ss a"
               )}
             </div>
-            <div className="">{postLoad?.title}</div>
+            <div className="text-2xl">{postLoad?.title}</div>
             <div className="">{postLoad?.tags.join()}</div>
-            <div className="">{postLoad?.text}</div>
+            <Markdown value={postLoad?.text} />
           </div>
         </div>
       )}
