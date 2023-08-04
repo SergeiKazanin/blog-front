@@ -32,7 +32,7 @@ export default function Header() {
         </div>
 
         {!isAuth && (
-          <div className="w-auto flex md:flex-row flex-col gap-3 md:w-auto w-full items-start">
+          <div className="flex md:flex-row flex-col gap-3 md:w-auto w-full items-start">
             <Link
               to={"login"}
               className="bg-cyan-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-cyan-400 text-2xl shadow-md"
