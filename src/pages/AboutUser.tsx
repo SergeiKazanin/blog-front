@@ -4,6 +4,7 @@ import moment from "moment";
 
 export default function AboutUser() {
   const { user, isAuth } = useAppSelector((store) => store.posts);
+
   return isAuth ? (
     <div className="mt-20 px-3 flex flex-col gap-2">
       <div className="flex gap-5">

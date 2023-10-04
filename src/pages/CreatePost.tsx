@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [textArticle, setTextArticle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageId, setImageId] = useState("");
   const [textTitle, setTextTitle] = useState("");
   const [tags, setTags] = useState("");
   const [edit, setEdit] = useState(false);
@@ -37,7 +37,7 @@ export default function CreatePost() {
       if (e.target.files) {
         formData.append("image", e.target.files[0]);
         const fileLink = await fileLoad(formData).unwrap();
-        setImageUrl(fileLink.url);
+        setImageId(fileLink.id);
       }
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ export default function CreatePost() {
   };
 
   const onClickRemoveImage = () => {
-    setImageUrl("");
+    setImageId("");
   };
 
   const onChange = useCallback((value: string) => {
@@ -56,23 +56,23 @@ export default function CreatePost() {
   const handleSubmit = async () => {
     alert("Создание постов отключено");
     navigate(`/posts`);
-    // try {
-    //   const post = {
-    //     title: textTitle,
-    //     tags: tags.split(","),
-    //     imageUrl,
-    //     text: textArticle,
-    //   };
+    try {
+      const post = {
+        title: textTitle,
+        tags: tags.split(","),
+        imageId,
+        text: textArticle,
+      };
 
-    //   const postload = edit
-    //     ? await updatePost({ id, post }).unwrap()
-    //     : await loadPost(post).unwrap();
-    //   const idL = edit ? id : postload._id;
-    //   navigate(`/post/${idL}`);
-    // } catch (error) {
-    //   console.log(error);
-    //   alert("Ошибка при создании сатьи");
-    // }
+      const postload = edit
+        ? await updatePost({ id, post }).unwrap()
+        : await loadPost(post).unwrap();
+      const idL = edit ? id : postload._id;
+      navigate(`/post/${idL}`);
+    } catch (error) {
+      console.log(error);
+      alert("Ошибка при создании сатьи");
+    }
   };
 
   const options = useMemo(() => {
@@ -90,7 +90,7 @@ export default function CreatePost() {
       try {
         const post = await getPost(id).unwrap();
         setTextTitle(post.title);
-        setImageUrl(post.imageUrl);
+        setImageId(post.imageId);
         setTags(post.tags.join());
         setTextArticle(post.text);
         setEdit(true);
@@ -121,11 +121,11 @@ export default function CreatePost() {
           hidden
           className=""
         />
-        {imageUrl && (
+        {imageId && (
           <>
             <div
               style={{
-                backgroundImage: `url(${process.env.REACT_APP_API_URL}${imageUrl})`,
+                backgroundImage: `url(${process.env.REACT_APP_API_URL}/uploads/${imageId})`,
               }}
               className="w-full h-[400px] bg-center  bg-no-repeat bg-cover rounded-md"
             ></div>

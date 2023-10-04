@@ -18,7 +18,7 @@ export default function SinglePost() {
         <div className="flex flex-col gap-2 overflow-hidden rounded-md bg-white w-full h-min">
           <div
             style={{
-              backgroundImage: `url(${process.env.REACT_APP_API_URL}${postLoad?.imageUrl})`,
+              backgroundImage: `url(${process.env.REACT_APP_API_URL}/uploads/${postLoad?.imageId})`,
             }}
             className="w-full h-[400px] bg-center  bg-no-repeat bg-cover"
           ></div>

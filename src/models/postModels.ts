@@ -7,7 +7,7 @@ export interface Post {
   tags: string[];
   viewsCount: number;
   user: UserPost;
-  imageUrl: string;
+  imageId: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -22,9 +22,9 @@ export interface CreatePost {
   title: string;
   text: string;
   tags: string[];
-  imageUrl: string;
+  imageId: string;
 }
 
 export interface UrlImg {
-  url: string;
+  id: string;
 }

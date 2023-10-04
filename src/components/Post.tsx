@@ -33,12 +33,12 @@ export const PostRender: FC<PostProps> = ({ post }) => {
       <div className="flex gap-4 w-full  rounded-md shadow-md p-2 bg-white hover:border hover:border-purple-500">
         <div
           style={{
-            backgroundImage: `url(${process.env.REACT_APP_API_URL}${post.imageUrl})`,
+            backgroundImage: `url(${process.env.REACT_APP_API_URL}/uploads/${post.imageId})`,
           }}
           className="w-20 h-28 bg-center flex-shrink-0 hidden sm:block bg-no-repeat bg-contain rounded-md"
         ></div>
         <div className="flex flex-col">
-          <div>{post.user.fullName}</div>
+          <div>{post?.user?.fullName}</div>
           <div className="text-sm ">
             {moment(post.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
           </div>
