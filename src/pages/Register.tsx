@@ -18,6 +18,7 @@ export default function Register() {
       localStorage.setItem("accessToken", userToken.accessToken);
       navigate("/posts");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userToken]);
 
   return (

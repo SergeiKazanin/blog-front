@@ -27,6 +27,7 @@ export default function MainPage() {
         });
     }
     navigate("posts");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
