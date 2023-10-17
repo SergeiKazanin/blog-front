@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { useLazyRefreshQuery } from "../store/userApi";
 import { useActions } from "../hooks/actions";
 import { useNavigate } from "react-router-dom";
+import { UserToken } from "../models/userModels";
 
 export default function MainPage() {
   const [refresh] = useLazyRefreshQuery();
@@ -14,7 +15,7 @@ export default function MainPage() {
     if (localStorage.getItem("accessToken")) {
       refresh("")
         .unwrap()
-        .then((userToken) => {
+        .then((userToken: UserToken) => {
           if (userToken) {
             setIsAuth(true);
             userAdd(userToken);
@@ -26,7 +27,7 @@ export default function MainPage() {
         });
     }
     navigate("posts");
-  });
+  }, []);
 
   return (
     <div className="w-full min-h-screen bg-gray-100 text-black font-montserrat text-xl">
