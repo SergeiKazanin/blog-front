@@ -18,7 +18,7 @@ export default function Register() {
       localStorage.setItem("accessToken", userToken.accessToken);
       navigate("/posts");
     }
-  }, [navigate, setIsAuth, userAdd, userToken]);
+  }, [userToken]);
 
   return (
     <div className="flex mt-20 flex-col gap-3 items-center rounded-xl h-[500px] w-[500px]">

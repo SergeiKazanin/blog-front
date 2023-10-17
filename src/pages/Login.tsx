@@ -17,7 +17,7 @@ export default function Login() {
       localStorage.setItem("accessToken", userToken.accessToken);
       navigate("/posts");
     }
-  }, [navigate, setIsAuth, userAdd, userToken]);
+  }, [userToken]);
 
   return (
     <div className="flex mt-20 flex-col items-center gap-3 rounded-xl">
