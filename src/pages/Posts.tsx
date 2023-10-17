@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAllPostsQuery } from "../store/postApi";
 import { CircularProgress, Pagination } from "@mui/material";
 import { PostRender } from "../components/Post";
@@ -9,7 +9,7 @@ export default function Posts() {
     refetchOnMountOrArgChange: true,
   });
   const { numberPage } = useParams();
-  let page: number = 1;
+  let page = 1;
   if (numberPage) {
     page = parseInt(numberPage);
   }

@@ -14,8 +14,7 @@ import {
   useUpdatePostMutation,
   useUploadFileMutation,
 } from "../store/postApi";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [textArticle, setTextArticle] = useState("");

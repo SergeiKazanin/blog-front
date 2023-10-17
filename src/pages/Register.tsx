@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useActions } from "../hooks/actions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -18,13 +18,10 @@ export default function Register() {
       localStorage.setItem("accessToken", userToken.accessToken);
       navigate("/posts");
     }
-  }, [setIsAuth, userAdd, userToken]);
+  }, [navigate, setIsAuth, userAdd, userToken]);
 
   return (
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="flex mt-20 flex-col gap-3 items-center rounded-xl h-[500px] w-[500px]"
-    >
+    <div className="flex mt-20 flex-col gap-3 items-center rounded-xl h-[500px] w-[500px]">
       <div className="text-2xl">Registration</div>
       {isError ? <p>Error try again</p> : <br />}
       <Formik
@@ -44,7 +41,7 @@ export default function Register() {
           registerUser(values);
         }}
       >
-        {({ errors, touched }) => (
+        {() => (
           <Form className="flex flex-col gap-3 items-center justify-center">
             <Field
               className="h-9 p-1 placeholder-black relative outline-none rounded-md shadow-md"

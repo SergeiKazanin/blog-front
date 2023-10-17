@@ -1,7 +1,6 @@
-import React from "react";
 import { useParams } from "react-router";
 import { useGetPostQuery } from "../store/postApi";
-import { CircularProgress, dividerClasses } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import moment from "moment";
 import Markdown from "marked-react";
 

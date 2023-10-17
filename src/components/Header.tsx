@@ -1,9 +1,7 @@
-import React from "react";
 import { useAppSelector } from "../hooks/redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../store/userApi";
 import { useActions } from "../hooks/actions";
-import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const { isAuth, user } = useAppSelector((store) => store.posts);
