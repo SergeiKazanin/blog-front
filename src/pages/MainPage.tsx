@@ -24,12 +24,9 @@ export default function MainPage() {
         })
         .catch((e) => {
           console.log(e);
+          localStorage.removeItem("accessToken");
         });
-    } else {
-      navigate("posts");
-      localStorage.removeItem("accessToken");
-    }
-
+    } else navigate("posts");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
