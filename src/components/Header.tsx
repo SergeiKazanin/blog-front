@@ -14,7 +14,7 @@ export default function Header() {
       <nav className="max-w-screen-lg w-full md:py-0 py-3 gap-3 flex-col md:flex-row  px-6 flex justify-between items-center">
         <div className="flex justify-between w-full">
           <Link
-            to={"/posts"}
+            to={"/"}
             className="bg-slate-300 px-4 h-10 rounded-md flex items-center justify-center hover:bg-slate-400 text-3xl shadow-md font-baebneue"
           >
             BLOG
@@ -59,7 +59,7 @@ export default function Header() {
                 localStorage.removeItem("accessToken");
                 setIsAuth(false);
                 userDel();
-                navigate("/posts");
+                navigate("/");
               }}
               className="bg-yellow-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-yellow-400 text-2xl shadow-md"
             >

@@ -54,7 +54,7 @@ export default function Posts() {
         }}
         count={totalPage}
         page={page}
-        onChange={(_, numPage) => navigate(`/posts/${numPage}`)}
+        onChange={(_, numPage) => navigate(`/${numPage}`)}
         className="mt-3"
       />
     </div>

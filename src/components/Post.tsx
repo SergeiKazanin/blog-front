@@ -24,7 +24,7 @@ export const PostRender: FC<PostProps> = ({ post }) => {
       await deletePost(post._id);
       navigate(0);
     } catch (error) {
-      console.log(error);
+      alert("Ошибка при удалении поста");
     }
   };
 
@@ -60,7 +60,7 @@ export const PostRender: FC<PostProps> = ({ post }) => {
                   onClick={(e) => handleDelete(e)}
                 >
                   <DeleteOutlinedIcon />
-                </IconButton>{" "}
+                </IconButton>
               </>
             ) : (
               <></>

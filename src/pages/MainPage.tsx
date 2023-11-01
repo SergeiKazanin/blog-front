@@ -4,13 +4,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLazyRefreshQuery } from "../store/userApi";
 import { useActions } from "../hooks/actions";
-import { useNavigate } from "react-router-dom";
 import { UserToken } from "../models/userModels";
 
 export default function MainPage() {
   const [refresh] = useLazyRefreshQuery();
   const { setIsAuth, userAdd } = useActions();
-  const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       refresh("")
@@ -22,8 +21,7 @@ export default function MainPage() {
             localStorage.setItem("accessToken", userToken.accessToken);
           }
         })
-        .catch((e) => {
-          console.log(e);
+        .catch(() => {
           localStorage.removeItem("accessToken");
         });
     }

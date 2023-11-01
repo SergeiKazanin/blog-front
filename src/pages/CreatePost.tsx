@@ -39,7 +39,6 @@ export default function CreatePost() {
         setImageId(fileLink.id);
       }
     } catch (error) {
-      console.log(error);
       alert("Ошибка при загрузке файла");
     }
   };
@@ -53,8 +52,6 @@ export default function CreatePost() {
   }, []);
 
   const handleSubmit = async () => {
-    alert("Создание постов отключено");
-    navigate(`/posts`);
     try {
       const post = {
         title: textTitle,
@@ -69,7 +66,6 @@ export default function CreatePost() {
       const idL = edit ? id : postload._id;
       navigate(`/post/${idL}`);
     } catch (error) {
-      console.log(error);
       alert("Ошибка при создании сатьи");
     }
   };
@@ -93,14 +89,15 @@ export default function CreatePost() {
         setTags(post.tags.join());
         setTextArticle(post.text);
         setEdit(true);
-      } catch (error) {
-        console.log(error);
+      } catch {
+        alert("Ошибка при загрузке");
       }
     };
     if (id) {
       Post(id);
     }
-  }, [getPost, id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <div className="flex flex-col gap-3 w-full p-6">
@@ -166,7 +163,7 @@ export default function CreatePost() {
         >
           {edit ? "Save" : "Publish"}
         </button>
-        <Link to={"/posts"}>
+        <Link to={"/"}>
           <button className="bg-red-200 px-4 h-10 rounded-md flex items-center justify-center hover:bg-red-400 text-2xl shadow-md">
             Cancel
           </button>

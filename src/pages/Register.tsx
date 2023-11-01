@@ -16,7 +16,7 @@ export default function Register() {
       setIsAuth(true);
       userAdd(userToken);
       localStorage.setItem("accessToken", userToken.accessToken);
-      navigate("/posts");
+      navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userToken]);
