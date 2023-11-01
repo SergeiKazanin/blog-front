@@ -26,7 +26,7 @@ export default function MainPage() {
           console.log(e);
           localStorage.removeItem("accessToken");
         });
-    } else navigate("posts");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

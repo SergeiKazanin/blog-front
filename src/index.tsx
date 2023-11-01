@@ -18,6 +18,7 @@ const router = createBrowserRouter([
     element: <MainPage />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, element: <Posts /> },
       {
         path: "/posts/:numberPage",
         element: <Posts />,
